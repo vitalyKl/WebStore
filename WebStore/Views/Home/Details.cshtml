@@ -1,0 +1,40 @@
+﻿@model WebStore.Models.Employee
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <h3>Карточка сотрудника</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Возраст</th>
+                <th>Отдел</th>
+                <th>Дата найма</th>
+                <th>Образование</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Surname</td>
+                <td>@Model.Name</td>
+                <td>@Model.Patronomyc</td>
+                <td>@Model.Age</td>
+                <td>@Model.Department</td>
+                <td>@Model.HiringDate.ToString("dd/MM/yyyy")</td>
+                <td>@Model.Degree</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/Home/Employees">Назад к списку</a>
+</body>
+</html>
