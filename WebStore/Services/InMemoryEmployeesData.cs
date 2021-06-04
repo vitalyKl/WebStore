@@ -11,9 +11,9 @@ namespace WebStore.Services
     {
         private static readonly List<Employee> _Employees = new()
         {
-            new Employee { Id = 1, Age = 20, Name = "Александр", Patronomyc = "Сергеевич", Surname = "Пушкин", Department = "Продажи", HiringDate = new DateTime(2010, 11, 15), Degree = "Высшее" },
-            new Employee { Id = 2, Age = 38, Name = "Вячеслав", Patronomyc = "Михайлович", Surname = "Губерниев", Department = "Логистика", HiringDate = new DateTime(2010, 11, 05), Degree = "Среднее" },
-            new Employee { Id = 3, Age = 31, Name = "Дмитрий", Patronomyc = "Витальевич", Surname = "Соловей", Department = "Закупки", HiringDate = new DateTime(2010, 11, 01), Degree = "Высшее" }
+            new Employee { Id = 1, Age = 20, Name = "Александр", Patronymic = "Сергеевич", Surname = "Пушкин", Department = "Продажи", HiringDate = new DateTime(2010, 11, 15), Degree = "Высшее" },
+            new Employee { Id = 2, Age = 38, Name = "Вячеслав", Patronymic = "Михайлович", Surname = "Губерниев", Department = "Логистика", HiringDate = new DateTime(2010, 11, 05), Degree = "Среднее" },
+            new Employee { Id = 3, Age = 31, Name = "Дмитрий", Patronymic = "Витальевич", Surname = "Соловей", Department = "Закупки", HiringDate = new DateTime(2010, 11, 01), Degree = "Высшее" }
         };
         private int _CurrentMaxId;
 
@@ -55,7 +55,7 @@ namespace WebStore.Services
 
             db_item.Name = employee.Name;
             db_item.Surname = employee.Surname;
-            db_item.Patronomyc = employee.Patronomyc;
+            db_item.Patronymic = employee.Patronymic;
             db_item.Age = employee.Age;
             db_item.Degree = employee.Degree;
             db_item.Department = employee.Department;

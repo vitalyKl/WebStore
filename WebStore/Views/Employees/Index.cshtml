@@ -20,10 +20,17 @@
                 <td>@employee.Id </td>
                 <td>@employee.Surname</td>
                 <td>@employee.Name</td>
-                <td>@employee.Patronomyc</td>
+                <td>@employee.Patronymic</td>
                 <td>@employee.Age</td>
                 <td>
                     <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">
+                        <i class="fa fa-info"></i>
+                        info
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">
+                        <i class="fa fa-edit"></i>
                         edit
                     </a>
                 </td>
