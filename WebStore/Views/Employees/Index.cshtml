@@ -1,16 +1,9 @@
 ﻿@model IEnumerable<WebStore.Models.Employee>
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Сотрудники</title>
-</head>
-<body>
     <h3>Сотрудники магазина</h3>
     <hr/>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>#</th>
@@ -29,13 +22,15 @@
                 <td>@employee.Name</td>
                 <td>@employee.Patronomyc</td>
                 <td>@employee.Age</td>
-                <td>@Html.ActionLink("Детали", "Details", new { id = employee.Id })</td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">
+                        edit
+                    </a>
+                </td>
             </tr>
             }
         </tbody>
     </table>
     <p>
-        <a href="/">На главную</a>
+        <a asp-controller="Home" asp-action="Index">На главную</a>
     </p>
-</body>
-</html>
