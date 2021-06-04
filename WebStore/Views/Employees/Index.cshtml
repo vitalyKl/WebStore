@@ -2,6 +2,12 @@
 
     <h3>Сотрудники магазина</h3>
     <hr/>
+<p>
+    <a asp-action="Create" class="btn btn-primary">создать 1</a>
+</p>
+<p>
+    <a asp-action="Edit" class="btn btn-primary">создать 2</a>
+</p>
 
     <table class="table">
         <thead>
@@ -33,6 +39,13 @@
                         <i class="fa fa-edit"></i>
                         edit
                     </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteConfirmed" asp-route-id="@employee.Id">
+                        <button type="submit">
+                            <i class="fa fa-trash-o text-danger"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
             }

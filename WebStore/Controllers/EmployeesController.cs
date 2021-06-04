@@ -34,7 +34,7 @@ namespace WebStore.Controllers
             return View(employee);
         }
 
-        public IActionResult Create() => View();
+        public IActionResult Create() => View("Edit", new EmployeeViewModel());
 
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel model)
@@ -51,14 +51,20 @@ namespace WebStore.Controllers
                 Department = model.Department,
             };
 
-            _EmployeesData.Update(employee);
+            if (employee.Id == 0)
+                _EmployeesData.Add(employee);
+            else
+                _EmployeesData.Update(employee);
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
-            var employee = _EmployeesData.Get(id);
+            if (id is null)
+                return View(new EmployeeViewModel());
+
+            var employee = _EmployeesData.Get((int)id);
             if (employee is null) return NotFound();
 
             var viewModel = new EmployeeViewModel
@@ -75,6 +81,30 @@ namespace WebStore.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Delete(int id) => View();
+        public IActionResult Delete(int id)
+        {
+            if (id <= 0) return BadRequest();
+
+            var employee = _EmployeesData.Get(id);
+            if (employee is null) return NotFound();
+
+            return View(new EmployeeViewModel
+            {
+                Id = employee.Id,
+                Name = employee.Name,
+                Surname = employee.Surname,
+                Patronymic = employee.Patronymic,
+                Age = employee.Age,
+                HiringDate = employee.HiringDate,
+                Degree = employee.Degree,
+                Department = employee.Department,
+            });
+        }
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _EmployeesData.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }
