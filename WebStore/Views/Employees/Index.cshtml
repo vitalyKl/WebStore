@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebStore.Models.Employee>
+
+    <h3>Сотрудники магазина</h3>
+    <hr/>
+<p>
+    <a asp-action="Create" class="btn btn-primary">создать 1</a>
+</p>
+<p>
+    <a asp-action="Edit" class="btn btn-primary">создать 2</a>
+</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Возраст</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var employee in Model)
+            {
+            <tr>
+                <td>@employee.Id </td>
+                <td>@employee.Surname</td>
+                <td>@employee.Name</td>
+                <td>@employee.Patronymic</td>
+                <td>@employee.Age</td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">
+                        <i class="fa fa-info"></i>
+                        info
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">
+                        <i class="fa fa-edit"></i>
+                        edit
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteConfirmed" asp-route-id="@employee.Id">
+                        <button type="submit">
+                            <i class="fa fa-trash-o text-danger"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+        <a asp-controller="Home" asp-action="Index">На главную</a>
+    </p>

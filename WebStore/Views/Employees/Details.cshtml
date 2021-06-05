@@ -1,14 +1,7 @@
 ﻿@model WebStore.Models.Employee
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
     <h3>Карточка сотрудника</h3>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -26,7 +19,7 @@
                 <td>@Model.Id</td>
                 <td>@Model.Surname</td>
                 <td>@Model.Name</td>
-                <td>@Model.Patronomyc</td>
+                <td>@Model.Patronymic</td>
                 <td>@Model.Age</td>
                 <td>@Model.Department</td>
                 <td>@Model.HiringDate.ToString("dd/MM/yyyy")</td>
@@ -35,6 +28,6 @@
         </tbody>
     </table>
 
-    <a href="/Home/Employees">Назад к списку</a>
-</body>
-</html>
+    <a asp-controller="Employees" asp-action="Index">Назад к списку</a>
+    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@Model.Id">Редактирование</a>
+    <a asp-controller="Employees" asp-action="Delete" asp-route-id="@Model.Id" class="text-danger">Удаление</a>
