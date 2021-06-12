@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStore.Data;
 using WebStore.Models;
 using WebStore.Services.Interfaces;
 
@@ -9,27 +10,22 @@ namespace WebStore.Services
 {
     public class InMemoryEmployeesData: IEmployeesData
     {
-        private static readonly List<Employee> _Employees = new()
-        {
-            new Employee { Id = 1, Age = 20, Name = "Александр", Patronymic = "Сергеевич", Surname = "Пушкин", Department = "Продажи", HiringDate = new DateTime(2010, 11, 15), Degree = "Высшее" },
-            new Employee { Id = 2, Age = 38, Name = "Вячеслав", Patronymic = "Михайлович", Surname = "Губерниев", Department = "Логистика", HiringDate = new DateTime(2010, 11, 05), Degree = "Среднее" },
-            new Employee { Id = 3, Age = 31, Name = "Дмитрий", Patronymic = "Витальевич", Surname = "Соловей", Department = "Закупки", HiringDate = new DateTime(2010, 11, 01), Degree = "Высшее" }
-        };
+       
         private int _CurrentMaxId;
 
         public InMemoryEmployeesData()
         {
-            _CurrentMaxId = _Employees.Max(i => i.Id);
+            _CurrentMaxId = TestData.Employees.Max(i => i.Id);
         }
 
         public int Add(Employee employee)
         {
             if (employee is null) throw new ArgumentNullException(nameof(employee));
 
-            if (_Employees.Contains(employee)) return employee.Id;
+            if (TestData.Employees.Contains(employee)) return employee.Id;
 
             employee.Id = ++_CurrentMaxId;
-            _Employees.Add(employee);
+            TestData.Employees.Add(employee);
             return employee.Id;
         }
 
@@ -37,18 +33,18 @@ namespace WebStore.Services
         {
             var db_item = Get(id);
             if (db_item is null) return false;
-            return _Employees.Remove(db_item);
+            return TestData.Employees.Remove(db_item);
         }
 
-        public Employee Get(int id) => _Employees.SingleOrDefault(x => x.Id == id);
+        public Employee Get(int id) => TestData.Employees.SingleOrDefault(x => x.Id == id);
 
-        public IEnumerable<Employee> GetAll() => _Employees;
+        public IEnumerable<Employee> GetAll() => TestData.Employees;
 
         public void Update(Employee employee)
         {
             if (employee is null) throw new ArgumentNullException(nameof(employee));
 
-            if (_Employees.Contains(employee)) return;
+            if (TestData.Employees.Contains(employee)) return;
 
             var db_item = Get(employee.Id);
             if (db_item is null) return;
