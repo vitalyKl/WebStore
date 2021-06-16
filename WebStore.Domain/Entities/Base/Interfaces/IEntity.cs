@@ -8,7 +8,6 @@ namespace WebStore.Domain.Entities.Base.Interfaces
 {
     public interface IEntity
     {
-        int Id { get; }
-
+        int Id { get; set; }
     }
 }
