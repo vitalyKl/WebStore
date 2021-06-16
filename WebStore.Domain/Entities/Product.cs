@@ -8,7 +8,7 @@ using WebStore.Domain.Entities.Base.Interfaces;
 
 namespace WebStore.Domain.Entities
 {
-    class Product : NamedEntity, IOrderedEntity
+    public class Product : NamedEntity, IOrderedEntity
     {
         public int Order { get; set; }
         public int SectionId { get; set; }
